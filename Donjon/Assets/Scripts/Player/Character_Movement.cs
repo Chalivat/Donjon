@@ -29,6 +29,7 @@ public class Character_Movement : MonoBehaviour
         Move();
         Rotate();
         HandleAnimation();
+        groundCheck();
     }
 
     void Move()
@@ -48,8 +49,23 @@ public class Character_Movement : MonoBehaviour
         {
             if (characterController.velocity.magnitude >= .3f)
             {
+                Quaternion newRot = Quaternion.identity;
+                if (!characterController.isGrounded)
+                {
+                     newRot = Quaternion.LookRotation(characterController.velocity.normalized);
+                    Vector3 nextRot = newRot.eulerAngles;
+                    nextRot.x = 0;
+                    nextRot.z = 0;
+                    newRot = Quaternion.Euler(nextRot);
+                }
+                else
+                {
+                    newRot = Quaternion.LookRotation(characterController.velocity.normalized);
+                }
+
+
                 transform.rotation = Quaternion.Lerp(transform.rotation,
-                                                                                    Quaternion.LookRotation(characterController.velocity.normalized),
+                                                                                    newRot,
                                                                                     rotationSpeed * Time.deltaTime);
             }
         }
@@ -73,5 +89,17 @@ public class Character_Movement : MonoBehaviour
         anim.SetFloat("Velocity",characterController.velocity.magnitude);
         anim.SetFloat("VelocityZ", characterController.velocity.z /2.5f);
         anim.SetFloat("VelocityX", characterController.velocity.x / 2.5f);
+        anim.SetBool("IsGrounded",characterController.isGrounded);
+    }
+
+    void groundCheck()
+    {
+        if (Physics.Raycast(transform.position,characterController.velocity,5f))
+        {
+            if (!characterController.isGrounded)
+            {
+                anim.SetBool("IsGrounded",true);
+            }
+        }
     }
 }

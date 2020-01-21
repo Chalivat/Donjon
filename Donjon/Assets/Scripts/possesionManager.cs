@@ -38,6 +38,7 @@ public class possesionManager : MonoBehaviour
 
             if (time >= 1.5f)
             {
+                TeleportPlayer();
                 Player.GetComponent<Entity>().GetPossessed();
                 time = 0;
             }
@@ -45,5 +46,10 @@ public class possesionManager : MonoBehaviour
 
         Cancel_Circle.fillAmount = time / 1.5f;
 
+    }
+
+    void TeleportPlayer()
+    {
+        Player.transform.position = Possession.transform.position;
     }
 }

@@ -7,7 +7,7 @@ public class Hiding_Behaviour : MonoBehaviour
 {
 
     public Animator anim;
-
+    private bool isAgainstWall;
     void Start()
     {
         
@@ -18,13 +18,20 @@ public class Hiding_Behaviour : MonoBehaviour
         checkForWall();
     }
 
+
+    void WalkAgainstWall()
+    {
+        
+    }
+
     void checkForWall()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position,transform.forward,out hit, 1f))
+        if (Physics.Raycast(transform.position,transform.forward,out hit, .4f))
         {
             if (hit.transform.CompareTag("SemiWall"))
             {
+                isAgainstWall = true;
                 anim.SetBool("IsNearWall",true);
             }
         }
