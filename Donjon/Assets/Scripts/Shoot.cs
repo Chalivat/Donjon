@@ -43,6 +43,8 @@ public class Shoot : MonoBehaviour
                     Instantiate(Arrow,shootPoint.transform.position,shootPoint.transform.rotation * Quaternion.Euler(0,90,0));
                 }
                 bendForce = 0;
+
+                
             }
         }
 
