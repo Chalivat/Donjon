@@ -9,6 +9,8 @@ public class possesionManager : MonoBehaviour
     private GameObject Player;
     private float time;
     public Image Cancel_Circle;
+
+    public PossetionTransition CameraTransition;
     void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
@@ -24,6 +26,7 @@ public class possesionManager : MonoBehaviour
     {
         Possession.GetComponent<Entity>().GetUnpossessed();
         Possession = entity;
+        CameraTransition.Transition(entity);
     }
 
     void Cancel()
