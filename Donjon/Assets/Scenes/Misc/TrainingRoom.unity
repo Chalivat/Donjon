@@ -3727,6 +3727,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfcf7c57a5338e8428255b0a519f5e3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 8
 --- !u!1 &2000838792
 GameObject:
   m_ObjectHideFlags: 0
@@ -3864,6 +3865,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cancel_Circle: {fileID: 2080891153}
+  CameraTransition: {fileID: 2000030114}
 --- !u!1 &2080891151
 GameObject:
   m_ObjectHideFlags: 0

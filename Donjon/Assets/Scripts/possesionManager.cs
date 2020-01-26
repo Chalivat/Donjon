@@ -24,9 +24,13 @@ public class possesionManager : MonoBehaviour
 
     public void SetPossession(GameObject entity)
     {
+        if (Possession != Player)
+        {
+            CameraTransition.Transition(entity);
+        }
         Possession.GetComponent<Entity>().GetUnpossessed();
         Possession = entity;
-        CameraTransition.Transition(entity);
+        
     }
 
     void Cancel()
