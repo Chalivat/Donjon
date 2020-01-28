@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Shoot : MonoBehaviour
@@ -8,6 +9,10 @@ public class Shoot : MonoBehaviour
     public GameObject shootPoint;
     public Camera cam;
     private float bendForce;
+
+    public Image bar1;
+    public Image bar2;
+
     void Start()
     {
         cam = GetComponent<Entity>().cam;
@@ -17,6 +22,7 @@ public class Shoot : MonoBehaviour
     void Update()
     {
         Fire();
+        AdapteUI(bendForce);
     }
 
     void Fire()
@@ -56,6 +62,16 @@ public class Shoot : MonoBehaviour
         else bendForce -= Time.deltaTime;
 
         bendForce = Mathf.Clamp(bendForce, 0, 2);
+
+    }
+
+
+    void AdapteUI(float charge)
+    {
+        float amount = charge * 2;
+
+        bar1.fillAmount = charge;
+        bar2.fillAmount = charge;
 
     }
 
