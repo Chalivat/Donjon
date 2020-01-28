@@ -9,6 +9,8 @@ public class Character_Movement : MonoBehaviour
 
     [Header("Movement info")]
     public float Speed;
+    public float normalSpeed;
+    public float crouchSpeed;
     public float rotationSpeed;
 
     [Header("Inputs")]
@@ -33,6 +35,7 @@ public class Character_Movement : MonoBehaviour
         Rotate();
         HandleAnimation();
         groundCheck();
+        Crouch();
     }
 
     void FixedUpdate()
@@ -56,7 +59,7 @@ public class Character_Movement : MonoBehaviour
 
     void Rotate()
     {
-        if (Input.GetAxis("Zoom") < .1f)
+        if (Input.GetAxis("Shoot") < .1f)
         {
             if (rb.velocity.magnitude >= .3f)
             {
@@ -121,5 +124,19 @@ public class Character_Movement : MonoBehaviour
         {
             isGrounded = false;
         }
+    }
+
+    void Crouch()
+    {
+        if (Input.GetAxis("LeftStick") > .1f)
+        {
+            anim.SetBool("isCrouching",!anim.GetBool("isCrouching"));
+        }
+
+        if (anim.GetBool("isCrouching"))
+        {
+            Speed = crouchSpeed;
+        }
+        else Speed = normalSpeed;
     }
 }
