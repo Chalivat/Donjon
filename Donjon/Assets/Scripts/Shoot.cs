@@ -13,6 +13,9 @@ public class Shoot : MonoBehaviour
     public Image bar1;
     public Image bar2;
 
+    public delegate void ShootEvent();
+    public static event ShootEvent onShoot; //Event triggered when Shooting
+
     void Start()
     {
         cam = GetComponent<Entity>().cam;
@@ -38,8 +41,9 @@ public class Shoot : MonoBehaviour
         else asHit = false;
         if (Input.GetAxis("Shoot") <.1f)
         {
-            if (bendForce > 1)
+            if (bendForce > .4f)
             {
+                onShoot();
                 if (asHit)
                 {
                     Instantiate(Arrow, shootPoint.transform.position, aiming);
@@ -68,14 +72,20 @@ public class Shoot : MonoBehaviour
 
     void AdapteUI(float charge)
     {
-        float amount = charge * 2;
 
-        bar1.fillAmount = charge;
-        bar2.fillAmount = charge;
+
+        bar1.fillAmount = charge * 1 / .4f;
+        bar2.fillAmount = charge * 1/ .4f;
+
+        if (charge >= 1f)
+        {
+            bar1.color = Color.green;
+        }
 
     }
 
-    
 
+
+    
 
 }

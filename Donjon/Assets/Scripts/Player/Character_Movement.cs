@@ -22,6 +22,11 @@ public class Character_Movement : MonoBehaviour
     private Camera cam;
 
     private bool isGrounded;
+
+    private RaycastHit groundHit;
+
+    public delegate void GroundEvent();
+    public static event GroundEvent onGround;
     
     void Start()
     {
@@ -41,6 +46,7 @@ public class Character_Movement : MonoBehaviour
     void FixedUpdate()
     {
         Move();
+        rb.AddForce(Vector3.down * 10f);
     }
     void Move()
     {
@@ -50,10 +56,11 @@ public class Character_Movement : MonoBehaviour
         
         Vector3 direction = new Vector3(x,0,z);
         direction = AlignMovementToCamera() * direction;
+        direction = Vector3.ProjectOnPlane(direction, groundHit.normal);
         //characterController.SimpleMove(direction * Speed * Time.deltaTime);
         if (isGrounded)
         {
-         rb.velocity = direction * Speed * Time.deltaTime;
+            rb.velocity = direction * Speed * Time.deltaTime;
         }
     }
 
@@ -108,6 +115,7 @@ public class Character_Movement : MonoBehaviour
 
     void groundCheck()
     {
+
         if (Physics.Raycast(transform.position,rb.velocity,5f))
         {
             if (!isGrounded)
@@ -116,9 +124,14 @@ public class Character_Movement : MonoBehaviour
             }
         }
 
-        if (Physics.Raycast(transform.position,Vector3.down,1.2f))
+        if (Physics.Raycast(transform.position,Vector3.down,out groundHit,1.2f))
         {
+            if (!isGrounded)
+            {
+                onGround();
+            }
             isGrounded = true;
+            
         }
         else
         {
@@ -139,4 +152,6 @@ public class Character_Movement : MonoBehaviour
         }
         else Speed = normalSpeed;
     }
+
+    
 }
