@@ -12,6 +12,8 @@ public class Entity : MonoBehaviour
     public Camera cam;
     public MonoBehaviour MovementScript;
 
+    
+
     void Start()
     {
         possessionManager = FindObjectOfType<possesionManager>();
@@ -39,4 +41,6 @@ public class Entity : MonoBehaviour
         cam.gameObject.SetActive(false);
         MovementScript.enabled = false;
     }
+
+    
 }

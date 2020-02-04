@@ -23,7 +23,7 @@ public class Player_Aim : MonoBehaviour
 
     void LateUpdate()
     {
-        if (Input.GetAxis("Zoom") >= .1f)
+        if (Input.GetAxis("Shoot") >= .1f)
         {
             Quaternion addRot = Quaternion.Euler(0,90,0);
             Spine.transform.rotation = cam.transform.rotation * addRot;
@@ -33,7 +33,7 @@ public class Player_Aim : MonoBehaviour
 
     void Aim()
     {
-        if (Input.GetAxis("Zoom") >= .1f)
+        if (Input.GetAxis("Shoot") >= .1f)
         {
             transform.rotation = Quaternion.LookRotation(AlignMovementToCamera() * Vector3.forward);
             Spine.transform.rotation = cam.transform.rotation;
@@ -52,7 +52,7 @@ public class Player_Aim : MonoBehaviour
     }
     void HandleAnimation()
     {
-        if (Input.GetAxis("Zoom") >= .1f)
+        if (Input.GetAxis("Shoot") >= .1f)
         {
             anim.SetBool("isAiming",true);
         }

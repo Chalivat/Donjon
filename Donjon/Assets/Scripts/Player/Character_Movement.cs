@@ -9,29 +9,45 @@ public class Character_Movement : MonoBehaviour
 
     [Header("Movement info")]
     public float Speed;
+    public float normalSpeed;
+    public float crouchSpeed;
     public float rotationSpeed;
 
     [Header("Inputs")]
     public string Strafe;
     public string Forward;
 
-    private CharacterController characterController;
+    
+    private Rigidbody rb;
     private Camera cam;
+
+    private bool isGrounded;
+
+    private RaycastHit groundHit;
+
+    public delegate void GroundEvent();
+    public static event GroundEvent onGround;
     
     void Start()
     {
-        characterController = GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody>();
         cam = Camera.main;
     }
     
     void Update()
     {
-        Move();
+        Debug.Log(isGrounded);
         Rotate();
         HandleAnimation();
         groundCheck();
+        Crouch();
     }
 
+    void FixedUpdate()
+    {
+        Move();
+        rb.AddForce(Vector3.down * 10f);
+    }
     void Move()
     {
         float x = Input.GetAxis(Strafe);
@@ -40,19 +56,24 @@ public class Character_Movement : MonoBehaviour
         
         Vector3 direction = new Vector3(x,0,z);
         direction = AlignMovementToCamera() * direction;
-        characterController.SimpleMove(direction * Speed * Time.deltaTime);
+        direction = Vector3.ProjectOnPlane(direction, groundHit.normal);
+        //characterController.SimpleMove(direction * Speed * Time.deltaTime);
+        if (isGrounded)
+        {
+            rb.velocity = direction * Speed * Time.deltaTime;
+        }
     }
 
     void Rotate()
     {
-        if (Input.GetAxis("Zoom") < .1f)
+        if (Input.GetAxis("Shoot") < .1f)
         {
-            if (characterController.velocity.magnitude >= .3f)
+            if (rb.velocity.magnitude >= .3f)
             {
                 Quaternion newRot = Quaternion.identity;
-                if (!characterController.isGrounded)
+                if (!isGrounded)
                 {
-                     newRot = Quaternion.LookRotation(characterController.velocity.normalized);
+                     newRot = Quaternion.LookRotation(rb.velocity.normalized);
                     Vector3 nextRot = newRot.eulerAngles;
                     nextRot.x = 0;
                     nextRot.z = 0;
@@ -60,7 +81,7 @@ public class Character_Movement : MonoBehaviour
                 }
                 else
                 {
-                    newRot = Quaternion.LookRotation(characterController.velocity.normalized);
+                    newRot = Quaternion.LookRotation(rb.velocity.normalized);
                 }
 
 
@@ -86,20 +107,51 @@ public class Character_Movement : MonoBehaviour
 
     void HandleAnimation()
     {
-        anim.SetFloat("Velocity",characterController.velocity.magnitude);
-        anim.SetFloat("VelocityZ", characterController.velocity.z /2.5f);
-        anim.SetFloat("VelocityX", characterController.velocity.x / 2.5f);
-        anim.SetBool("IsGrounded",characterController.isGrounded);
+        anim.SetFloat("Velocity",rb.velocity.magnitude);
+        anim.SetFloat("VelocityZ", rb.velocity.z /2.5f);
+        anim.SetFloat("VelocityX", rb.velocity.x / 2.5f);
+        anim.SetBool("IsGrounded",isGrounded);
     }
 
     void groundCheck()
     {
-        if (Physics.Raycast(transform.position,characterController.velocity,5f))
+
+        if (Physics.Raycast(transform.position,rb.velocity,5f))
         {
-            if (!characterController.isGrounded)
+            if (!isGrounded)
             {
                 anim.SetBool("IsGrounded",true);
             }
         }
+
+        if (Physics.Raycast(transform.position,Vector3.down,out groundHit,1.2f))
+        {
+            if (!isGrounded)
+            {
+                onGround();
+            }
+            isGrounded = true;
+            
+        }
+        else
+        {
+            isGrounded = false;
+        }
     }
+
+    void Crouch()
+    {
+        if (Input.GetAxis("LeftStick") > .1f)
+        {
+            anim.SetBool("isCrouching",!anim.GetBool("isCrouching"));
+        }
+
+        if (anim.GetBool("isCrouching"))
+        {
+            Speed = crouchSpeed;
+        }
+        else Speed = normalSpeed;
+    }
+
+    
 }
