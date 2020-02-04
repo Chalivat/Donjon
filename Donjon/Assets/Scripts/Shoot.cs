@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Shoot : MonoBehaviour
@@ -8,6 +9,13 @@ public class Shoot : MonoBehaviour
     public GameObject shootPoint;
     public Camera cam;
     private float bendForce;
+
+    public Image bar1;
+    public Image bar2;
+
+    public delegate void ShootEvent();
+    public static event ShootEvent onShoot; //Event triggered when Shooting
+
     void Start()
     {
         cam = GetComponent<Entity>().cam;
@@ -17,6 +25,7 @@ public class Shoot : MonoBehaviour
     void Update()
     {
         Fire();
+        AdapteUI(bendForce);
     }
 
     void Fire()
@@ -32,15 +41,16 @@ public class Shoot : MonoBehaviour
         else asHit = false;
         if (Input.GetAxis("Shoot") <.1f)
         {
-            if (bendForce > 1)
+            if (bendForce > .4f)
             {
+                onShoot();
                 if (asHit)
                 {
                     Instantiate(Arrow, shootPoint.transform.position, aiming);
                 }
                 else
                 {
-                    Instantiate(Arrow,shootPoint.transform.position,shootPoint.transform.rotation * Quaternion.Euler(0,90,0));
+                    Instantiate(Arrow,shootPoint.transform.position,cam.transform.rotation);
                 }
                 bendForce = 0;
 
@@ -59,7 +69,23 @@ public class Shoot : MonoBehaviour
 
     }
 
-    
 
+    void AdapteUI(float charge)
+    {
+
+
+        bar1.fillAmount = charge * 1 / .4f;
+        bar2.fillAmount = charge * 1/ .4f;
+
+        if (charge >= 1f)
+        {
+            bar1.color = Color.green;
+        }
+
+    }
+
+
+
+    
 
 }

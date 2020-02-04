@@ -30,7 +30,7 @@ public class Rat_AlignToGround : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position,Vector3.down,out hit, 1f))
+        if (Physics.Raycast(transform.position,Vector3.down,out hit, 1.5f))
         {
             //transform.rotation = transform.rotation * Quaternion.FromToRotation(transform.up, hit.normal);
             //transform.rotation =  Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;

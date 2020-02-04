@@ -9,6 +9,8 @@ public class Character_Movement : MonoBehaviour
 
     [Header("Movement info")]
     public float Speed;
+    public float normalSpeed;
+    public float crouchSpeed;
     public float rotationSpeed;
 
     [Header("Inputs")]
@@ -20,6 +22,11 @@ public class Character_Movement : MonoBehaviour
     private Camera cam;
 
     private bool isGrounded;
+
+    private RaycastHit groundHit;
+
+    public delegate void GroundEvent();
+    public static event GroundEvent onGround;
     
     void Start()
     {
@@ -33,11 +40,13 @@ public class Character_Movement : MonoBehaviour
         Rotate();
         HandleAnimation();
         groundCheck();
+        Crouch();
     }
 
     void FixedUpdate()
     {
         Move();
+        rb.AddForce(Vector3.down * 10f);
     }
     void Move()
     {
@@ -47,16 +56,17 @@ public class Character_Movement : MonoBehaviour
         
         Vector3 direction = new Vector3(x,0,z);
         direction = AlignMovementToCamera() * direction;
+        direction = Vector3.ProjectOnPlane(direction, groundHit.normal);
         //characterController.SimpleMove(direction * Speed * Time.deltaTime);
         if (isGrounded)
         {
-         rb.velocity = direction * Speed * Time.deltaTime;
+            rb.velocity = direction * Speed * Time.deltaTime;
         }
     }
 
     void Rotate()
     {
-        if (Input.GetAxis("Zoom") < .1f)
+        if (Input.GetAxis("Shoot") < .1f)
         {
             if (rb.velocity.magnitude >= .3f)
             {
@@ -105,6 +115,7 @@ public class Character_Movement : MonoBehaviour
 
     void groundCheck()
     {
+
         if (Physics.Raycast(transform.position,rb.velocity,5f))
         {
             if (!isGrounded)
@@ -113,13 +124,34 @@ public class Character_Movement : MonoBehaviour
             }
         }
 
-        if (Physics.Raycast(transform.position,Vector3.down,1.2f))
+        if (Physics.Raycast(transform.position,Vector3.down,out groundHit,1.2f))
         {
+            if (!isGrounded)
+            {
+                onGround();
+            }
             isGrounded = true;
+            
         }
         else
         {
             isGrounded = false;
         }
     }
+
+    void Crouch()
+    {
+        if (Input.GetAxis("LeftStick") > .1f)
+        {
+            anim.SetBool("isCrouching",!anim.GetBool("isCrouching"));
+        }
+
+        if (anim.GetBool("isCrouching"))
+        {
+            Speed = crouchSpeed;
+        }
+        else Speed = normalSpeed;
+    }
+
+    
 }
