@@ -7,6 +7,12 @@ public class Shot_Movement : MonoBehaviour
 {
     private Rigidbody rb;
     public float speed;
+
+    public float damage;
+
+    public delegate void EnnemyShot();
+    public static event EnnemyShot ennemyShot;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -17,4 +23,14 @@ public class Shot_Movement : MonoBehaviour
     {
         
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            ennemyShot();
+        }
+    }
+
+
 }

@@ -15,7 +15,7 @@ public class Player_Aim : MonoBehaviour
         cam = Camera.main;
     }
     
-    void Update()
+    void FixedUpdate()
     {
         Aim();
         HandleAnimation();

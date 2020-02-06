@@ -33,12 +33,14 @@ public class CameraFeedBack : MonoBehaviour
         originalPos = camTransform.localPosition;
         Shoot.onShoot += ShakeShoot;
         Character_Movement.onGround += ShakeGround;
+        Shot_Movement.ennemyShot += ShakeGround;
     }
 
     void OnDisable()
     {
         Shoot.onShoot -= ShakeShoot;
         Character_Movement.onGround -= ShakeGround;
+        Shot_Movement.ennemyShot -= ShakeGround;
     }
 
     void ShakeShoot()

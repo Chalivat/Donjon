@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 7251135278290004261}
   - component: {fileID: 7251135278290004260}
   m_Layer: 5
-  m_Name: Health
+  m_Name: Health slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 7251135278423794636}
   - component: {fileID: 7251135278423794635}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Bar1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -234,6 +234,7 @@ GameObject:
   - component: {fileID: 7251135278563990491}
   - component: {fileID: 7251135278563990490}
   - component: {fileID: 7251135278563990494}
+  - component: {fileID: 312386214}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -337,6 +338,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 7251135278563990492}
+--- !u!114 &312386214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7251135278563990489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93fcd3bfd252e114b825125306f571f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 7251135278290004260}
 --- !u!1 &7251135278821684535
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,7 +568,7 @@ GameObject:
   - component: {fileID: 7251135279071966200}
   - component: {fileID: 7251135279071966199}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: Bar2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -818,7 +832,7 @@ GameObject:
   - component: {fileID: 7251135280119424732}
   - component: {fileID: 7251135280119424731}
   m_Layer: 5
-  m_Name: Health (1)
+  m_Name: Health Fond
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -10,6 +10,7 @@ public class Shoot : MonoBehaviour
     public Camera cam;
     private float bendForce;
 
+    private Character_Movement characterMovement;
     public Image bar1;
     public Image bar2;
 
@@ -19,6 +20,10 @@ public class Shoot : MonoBehaviour
     void Start()
     {
         cam = GetComponent<Entity>().cam;
+        characterMovement = GetComponent<Character_Movement>();
+
+        bar1 = GameObject.Find("Bar1").GetComponent<Image>();
+        bar2 = GameObject.Find("Bar2").GetComponent<Image>();
     }
 
     // Update is called once per frame
@@ -26,6 +31,7 @@ public class Shoot : MonoBehaviour
     {
         Fire();
         AdapteUI(bendForce);
+        SlowTime();
     }
 
     void Fire()
@@ -61,9 +67,9 @@ public class Shoot : MonoBehaviour
 
         if (Input.GetAxis("Shoot") > .1f)
         {
-            bendForce += Time.deltaTime;
+            bendForce += Time.unscaledDeltaTime;
         }
-        else bendForce -= Time.deltaTime;
+        else bendForce -= Time.unscaledDeltaTime;
 
         bendForce = Mathf.Clamp(bendForce, 0, 2);
 
@@ -86,6 +92,18 @@ public class Shoot : MonoBehaviour
 
 
 
-    
+    void SlowTime()
+    {
+        if (!characterMovement.isGrounded && Input.GetAxis("Shoot") >= 1f)
+        {
+            Time.timeScale = .05f;
+            Time.fixedDeltaTime = 0.02f * Time.timeScale;
+        }
+        else
+        {
+            Time.timeScale = 1;
+            Time.fixedDeltaTime = 0.02f;
+        }
+    }
 
 }

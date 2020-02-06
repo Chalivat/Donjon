@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class Entity : MonoBehaviour
 {
@@ -17,6 +18,12 @@ public class Entity : MonoBehaviour
     void Start()
     {
         possessionManager = FindObjectOfType<possesionManager>();
+        Anchor = Instantiate(Anchor);
+        ConstraintSource source = new ConstraintSource();
+        source.sourceTransform = transform;
+        source.weight = 1;
+        Anchor.GetComponent<PositionConstraint>().AddSource(source);
+        cam = Anchor.transform.GetChild(0).GetChild(0).GetComponent<Camera>();
         if (!isPlayer)
         {
             cam.gameObject.SetActive(false);
