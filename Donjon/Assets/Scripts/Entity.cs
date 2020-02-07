@@ -15,7 +15,7 @@ public class Entity : MonoBehaviour
 
     
 
-    void Start()
+    void Awake()
     {
         possessionManager = FindObjectOfType<possesionManager>();
         Anchor = Instantiate(Anchor);
