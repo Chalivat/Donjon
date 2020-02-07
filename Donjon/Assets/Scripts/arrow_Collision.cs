@@ -6,6 +6,8 @@ using UnityEngine;
 public class arrow_Collision : MonoBehaviour
 {
     public float Speed;
+
+    
     void Start()
     {
         GetComponent<Rigidbody>().velocity = transform.forward * Speed;

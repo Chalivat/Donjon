@@ -199,6 +199,7 @@ GameObject:
   - component: {fileID: 163720138543866376}
   - component: {fileID: 163720138543866382}
   - component: {fileID: 163720138543866377}
+  - component: {fileID: 9095269003022662345}
   m_Layer: 0
   m_Name: Ennemy_Shot
   m_TagString: Untagged
@@ -251,3 +252,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!135 &9095269003022662345
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 163720138543866383}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}

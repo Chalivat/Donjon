@@ -21,7 +21,7 @@ public class Character_Movement : MonoBehaviour
     private Rigidbody rb;
     private Camera cam;
 
-    private bool isGrounded;
+    public bool isGrounded;
 
     private RaycastHit groundHit;
 
@@ -57,7 +57,6 @@ public class Character_Movement : MonoBehaviour
         Vector3 direction = new Vector3(x,0,z);
         direction = AlignMovementToCamera() * direction;
         direction = Vector3.ProjectOnPlane(direction, groundHit.normal);
-        //characterController.SimpleMove(direction * Speed * Time.deltaTime);
         if (isGrounded)
         {
             rb.velocity = direction * Speed * Time.deltaTime;
@@ -87,7 +86,7 @@ public class Character_Movement : MonoBehaviour
 
                 transform.rotation = Quaternion.Lerp(transform.rotation,
                                                                                     newRot,
-                                                                                    rotationSpeed * Time.deltaTime);
+                                                                                    rotationSpeed * Time.unscaledDeltaTime);
             }
         }
         

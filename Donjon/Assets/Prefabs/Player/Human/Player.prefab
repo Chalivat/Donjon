@@ -141,6 +141,7 @@ MonoBehaviour:
   rotationSpeed: 8.34
   Strafe: Strafe
   Forward: Forward
+  isGrounded: 0
 --- !u!54 &2005020627029959819
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -184,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 1
-  Anchor: {fileID: 0}
+  Anchor: {fileID: 929205416883480326, guid: 8f56d36a7e08b954396fd3c036666a4d, type: 3}
   cam: {fileID: 0}
   MovementScript: {fileID: 6745916366050975246}
 --- !u!114 &6745916366050975282
@@ -199,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0260abe64b35c8f4bb111313eb55882b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Arrow: {fileID: 0}
+  Arrow: {fileID: 4626065245081952426, guid: d8106585fa6f27a43a45f5956668931e, type: 3}
   shootPoint: {fileID: 6745916367817568190}
   cam: {fileID: 0}
   bar1: {fileID: 0}
@@ -1628,11 +1629,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: erika_archer_bow_arrow
-      objectReference: {fileID: 0}
-    - target: {fileID: 2529339335792126747, guid: 39f9300573818b94297354f6a4b18bb4,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2714008673014895898, guid: 39f9300573818b94297354f6a4b18bb4,
         type: 3}

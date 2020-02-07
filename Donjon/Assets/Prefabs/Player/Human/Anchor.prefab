@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 929205416068913410}
   - component: {fileID: 929205416068913469}
   - component: {fileID: 929205416068913408}
+  - component: {fileID: 2037437411}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -82,7 +83,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -209,6 +210,22 @@ MonoBehaviour:
       data1: 0
       data2: 0
   defaultFrameSettings: 0
+--- !u!114 &2037437411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929205416068913468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 858759fe33adf2340b9a607967157e31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camTransform: {fileID: 0}
+  shakeDuration: 0.05
+  shakeAmount: 0.09
+  decreaseFactor: 1
 --- !u!1 &929205416883480326
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,6 +305,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 858759fe33adf2340b9a607967157e31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camTransform: {fileID: 0}
+  shakeDuration: 0
+  shakeAmount: 0.7
+  decreaseFactor: 1
 --- !u!1 &929205417290374264
 GameObject:
   m_ObjectHideFlags: 0
