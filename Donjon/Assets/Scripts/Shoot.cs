@@ -41,7 +41,11 @@ public class Shoot : MonoBehaviour
         bool asHit;
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, 500f))
         {
+            Ray testRay = new Ray(cam.transform.position, cam.transform.forward);
+            Debug.DrawRay(cam.transform.position, cam.transform.forward,Color.green);
+            Debug.Log(hit.transform.gameObject);
             aiming = Quaternion.LookRotation(hit.point - shootPoint.transform.position);
+            Debug.DrawRay(hit.point, Vector3.up, Color.blue);
             asHit = true;
         }
         else asHit = false;
@@ -52,7 +56,8 @@ public class Shoot : MonoBehaviour
                 onShoot();
                 if (asHit)
                 {
-                    Instantiate(Arrow, shootPoint.transform.position, aiming);
+                    //Instantiate(Arrow, shootPoint.transform.position, aiming);
+                    Instantiate(Arrow, shootPoint.transform.position,aiming);
                 }
                 else
                 {

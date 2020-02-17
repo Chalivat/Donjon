@@ -23,6 +23,10 @@ public class Entity : MonoBehaviour
         source.sourceTransform = transform;
         source.weight = 1;
         Anchor.GetComponent<PositionConstraint>().AddSource(source);
+        if (Anchor.GetComponent<RotationConstraint>())
+        {
+            Anchor.GetComponent<RotationConstraint>().AddSource(source);
+        }
         cam = Anchor.transform.GetChild(0).GetChild(0).GetComponent<Camera>();
         if (!isPlayer)
         {
