@@ -15,6 +15,5 @@ public class UpdateCamera : MonoBehaviour
     void Update()
     {
         canvas.worldCamera = Camera.current;
-        Debug.Log(Camera.current);
     }
 }

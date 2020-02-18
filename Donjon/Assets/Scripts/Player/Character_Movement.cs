@@ -36,7 +36,6 @@ public class Character_Movement : MonoBehaviour
     
     void Update()
     {
-        Debug.Log(isGrounded);
         Rotate();
         HandleAnimation();
         groundCheck();
@@ -115,7 +114,7 @@ public class Character_Movement : MonoBehaviour
     void groundCheck()
     {
 
-        if (Physics.Raycast(transform.position,rb.velocity,5f))
+        if (Physics.Raycast(transform.position,rb.velocity,5f,LayerMask.GetMask("Ground")))
         {
             if (!isGrounded)
             {
@@ -123,7 +122,7 @@ public class Character_Movement : MonoBehaviour
             }
         }
 
-        if (Physics.Raycast(transform.position,Vector3.down,out groundHit,1.2f))
+        if (Physics.Raycast(transform.position,Vector3.down,out groundHit,1.2f,LayerMask.GetMask("Ground")))
         {
             if (!isGrounded)
             {
