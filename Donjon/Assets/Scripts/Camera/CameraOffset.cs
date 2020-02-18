@@ -44,8 +44,7 @@ public class CameraOffset : MonoBehaviour
     void AimZoom()
     {
         if (Input.GetAxis("Zoom") > .1f)
-        {
-            Debug.Log("Lol");
+        { 
             transform.localPosition = Vector3.Lerp(transform.localPosition, targetPosition, zoomSpeed * Time.fixedDeltaTime);
         }
         else

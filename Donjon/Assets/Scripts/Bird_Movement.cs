@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Bolt;
 using UnityEngine;
 
 public class Bird_Movement : MonoBehaviour
@@ -22,7 +23,11 @@ public class Bird_Movement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
     }
-    
+
+    void OnEnable()
+    {
+
+    }
     void FixedUpdate()
     {
         Move();
