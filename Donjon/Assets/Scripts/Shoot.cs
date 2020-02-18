@@ -46,7 +46,6 @@ public class Shoot : MonoBehaviour
     void Update()
     {
         Fire();
-        Debug.Log("camPos" + cam.transform.position);
         AdapteUI(bendForce);
         SlowTime();
     }
