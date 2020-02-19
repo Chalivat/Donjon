@@ -29,14 +29,10 @@ public class Porte : MonoBehaviour
 
     void OpenDoor()
     {
-        PosIng = Vector3.Lerp(EndPos, StartPos, duration);
-        transform.position = PosIng;
         Debug.Log("Open");
     }
     void CloseDoor()
     {
-        PosIng = Vector3.Lerp(StartPos, EndPos, duration);
-        transform.position = PosIng;
         Debug.Log("Close");
     }
 
