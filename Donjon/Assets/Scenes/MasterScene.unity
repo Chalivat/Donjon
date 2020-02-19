@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00037023335, g: 0.0012688425, b: 0.006560506, a: 1}
+  m_IndirectSpecularColor: {r: 0.00037023894, g: 0.0012688425, b: 0.006560506, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -29702,6 +29702,7 @@ GameObject:
   - component: {fileID: 2498326038042977939}
   - component: {fileID: 5697207945737417496}
   - component: {fileID: 6825375064609202651}
+  - component: {fileID: 7469484623536822959}
   m_Layer: 0
   m_Name: Cube.002
   m_TagString: Untagged
@@ -29709,6 +29710,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
+--- !u!65 &7469484623536822959
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7469484623536822958}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.07456985, y: 0.20199998, z: 0.008000013}
+  m_Center: {x: -0.037284926, y: 0.0000000260093, z: -0.000000035762785}
 --- !u!4 &7470023116828526588
 Transform:
   m_ObjectHideFlags: 0
