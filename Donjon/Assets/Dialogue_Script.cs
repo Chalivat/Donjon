@@ -24,6 +24,7 @@ public class Dialogue_Script : MonoBehaviour
         defilementDialogue.enabled = false;
         cam.gameObject.SetActive(false);
         BImage.SetActive(false);
+        RTImage.SetActive(false);
     }
     
     void Update()
@@ -48,6 +49,10 @@ public class Dialogue_Script : MonoBehaviour
                 {
                     Rat.GetComponent<Entity>().GetPossessed();
                     cam.gameObject.SetActive(false);
+                    Circle.fillAmount = 0;
+                    RTImage.SetActive(false);
+                    Circle.fillAmount = 0;
+                    defilementDialogue.dialogueEnded = false;
                 }
             }
         }
