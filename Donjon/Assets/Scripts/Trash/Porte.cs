@@ -5,15 +5,7 @@ using UnityEngine;
 public class Porte : MonoBehaviour
 {
     bool playerHere;
-    public Vector3 StartPos;
-    public Vector3 EndPos;
-    Vector3 PosIng;
-    public float duration;
-
-    private void Start()
-    {
-        StartPos = transform.position;
-    }
+    public Animator animPorte;
 
     void Update()
     {
@@ -29,10 +21,12 @@ public class Porte : MonoBehaviour
 
     void OpenDoor()
     {
+        animPorte.SetBool("Open", true);
         Debug.Log("Open");
     }
     void CloseDoor()
     {
+        animPorte.SetBool("Open", false);
         Debug.Log("Close");
     }
 
