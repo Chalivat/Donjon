@@ -6,12 +6,15 @@ public class Interaction : MonoBehaviour
 {
     bool Event;
     public Rigidbody rb;
+    public GameObject Player;
+    Entity entity;
 
     void Update()
     {
-        if (Event && Input.GetButtonDown("A"))
+        if (Event && !entity.isPlayer && Input.GetButtonDown("A"))
         {
             rb.useGravity = true;
+            Debug.Log("je suis rat");
         }
     }
     private void OnTriggerStay(Collider other)
@@ -19,7 +22,16 @@ public class Interaction : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Event = true;
+            Player = other.gameObject;
+            entity = Player.GetComponent<Entity>();
         }
-        else Event = false;
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Event = false;
+            Player = null;
+        }
     }
 }
