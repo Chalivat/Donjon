@@ -15,6 +15,7 @@ public class possesionManager : MonoBehaviour
     {
         Player = GameObject.FindGameObjectWithTag("Player");
         Possession = Player;
+        CameraTransition.gameObject.SetActive(false);
     }
     
     void Update()
@@ -26,6 +27,7 @@ public class possesionManager : MonoBehaviour
     {
         if (Possession != Player)
         {
+            CameraTransition.gameObject.SetActive(true);
             CameraTransition.Transition(entity);
         }
         Possession.GetComponent<Entity>().GetUnpossessed();
