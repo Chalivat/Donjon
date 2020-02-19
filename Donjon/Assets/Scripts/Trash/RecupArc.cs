@@ -7,11 +7,17 @@ public class RecupArc : MonoBehaviour
     bool Event;
     public Shoot Shoot_s;
     public GameObject Player;
+    public GameObject Arc;
     Entity entity;
 
     void Update()
     {
-        if (Event && !entity.isPlayer && Input.GetButtonDown("A"))
+        /*if ()
+        {
+            var mesh = GetComponent<MeshRenderer>();
+        }*/
+
+        if (Event && entity.isPlayer && Input.GetButtonDown("A"))
         {
             Shoot_s = Player.GetComponent<Shoot>();
             Shoot_s.enabled = true;
@@ -35,5 +41,9 @@ public class RecupArc : MonoBehaviour
             Event = false;
             Player = null;
         }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        Arc.SetActive(true);
     }
 }
