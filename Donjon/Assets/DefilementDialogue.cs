@@ -13,6 +13,7 @@ public class DefilementDialogue : MonoBehaviour
     private int charIndex;
     public float speed;
     private float time;
+    public bool dialogueEnded;
     void Start()
     {
         
@@ -22,6 +23,12 @@ public class DefilementDialogue : MonoBehaviour
     {
         TextScrolling();
         NextText();
+
+        if (index >= dialogues.Length)
+        {
+            dialogueEnded = true;
+        }
+        else dialogueEnded = false;
     }
 
     void TextScrolling()
@@ -55,5 +62,12 @@ public class DefilementDialogue : MonoBehaviour
                 charIndex = dialogues[index].Length;
             }
         }
+    }
+
+    public void ResetText()
+    {
+        index = 0;
+        charIndex = 0;
+        text.text = "";
     }
 }
