@@ -79,6 +79,6 @@ public class Bird_Movement : MonoBehaviour
         nextRot.z = y * 8;
         newRot = Quaternion.Euler(nextRot);
 
-        camera.transform.localRotation = Quaternion.Lerp(camera.transform.localRotation,newRot, 50f * Time.deltaTime);
+        //camera.transform.localRotation = Quaternion.Lerp(camera.transform.localRotation,newRot, 50f * Time.deltaTime);
     }
 }
