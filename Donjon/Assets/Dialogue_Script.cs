@@ -83,7 +83,7 @@ public class Dialogue_Script : MonoBehaviour
                 //begin dialogue
                 defilementDialogue.enabled = true;
                 isDialogueBegun = true;
-                AImage.SetActive(false);
+                //AImage.SetActive(false);
                 cam.gameObject.SetActive(true);
             }
         }

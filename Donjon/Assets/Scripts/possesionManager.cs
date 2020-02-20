@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class possesionManager : MonoBehaviour
@@ -11,16 +12,18 @@ public class possesionManager : MonoBehaviour
     public Image Cancel_Circle;
 
     public PossetionTransition CameraTransition;
+
     void Start()
     {
-        Player = GameObject.FindGameObjectWithTag("Player");
+        Player = GameObject.Find("Player");
         Possession = Player;
         CameraTransition.gameObject.SetActive(false);
     }
-    
+
     void Update()
     {
-        Cancel();   
+        Cancel();
+        LoadScene();
     }
 
     public void SetPossession(GameObject entity)
@@ -30,9 +33,10 @@ public class possesionManager : MonoBehaviour
             CameraTransition.gameObject.SetActive(true);
             CameraTransition.Transition(entity);
         }
+
         Possession.GetComponent<Entity>().GetUnpossessed();
         Possession = entity;
-        
+
     }
 
     void Cancel()
@@ -60,5 +64,18 @@ public class possesionManager : MonoBehaviour
     void TeleportPlayer()
     {
         Player.transform.position = Possession.transform.position;
+    }
+
+    void LoadScene()
+    {
+        if (Input.GetKey(KeyCode.Alpha1))
+        {
+            SceneManager.LoadScene(0);
+        }
+
+        if (Input.GetKey(KeyCode.Alpha2))
+        {
+            SceneManager.LoadScene(1);
+        }
     }
 }
