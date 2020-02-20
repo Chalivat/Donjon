@@ -22,12 +22,10 @@ public class Porte : MonoBehaviour
     void OpenDoor()
     {
         animPorte.SetBool("Open", true);
-        Debug.Log("Open");
     }
     void CloseDoor()
     {
         animPorte.SetBool("Open", false);
-        Debug.Log("Close");
     }
 
     private void OnTriggerStay(Collider other)

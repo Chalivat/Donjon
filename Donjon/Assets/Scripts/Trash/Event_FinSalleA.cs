@@ -26,8 +26,10 @@ public class Event_FinSalleA : MonoBehaviour
     {
         eventStart = true;
         CamEvent.enabled = true;
+        CamEvent.depth = 1;
+        yield return new WaitForSeconds(1f);
         MurIncassable.SetActive(false);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         CamEvent.enabled = false;
     }
 }
