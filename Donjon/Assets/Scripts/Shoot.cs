@@ -64,6 +64,7 @@ public class Shoot : MonoBehaviour
     {
         Quaternion aiming = Quaternion.identity;
         aiming = Quaternion.LookRotation(point - shootPoint.transform.position);
+        Debug.DrawRay(shootPoint.transform.position, point - shootPoint.transform.position,Color.magenta);
         
         if (Input.GetAxis("Shoot") <.1f)
         {
@@ -71,7 +72,7 @@ public class Shoot : MonoBehaviour
             {
                 onShoot();//evenement delegate
                 if (asHit)
-                {
+                { 
                     Instantiate(Arrow, shootPoint.transform.position,aiming);
                 }
                 else
